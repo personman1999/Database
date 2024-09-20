@@ -251,10 +251,11 @@ GROUP BY d.department_name;
 
 
 -- 19) Tìm tên nhân viên và tên dự án mà nhân viên có lương cao nhất tham gia trong từng phòng ban
-SELECT e.name AS employee_name, p.project_name AS project_name, e.salary
+SELECT e.name, p.project_name,d.department_name, e.salary
 FROM employees e
 JOIN employee_projects ep ON e.employee_id = ep.employee_id
 JOIN projects p ON ep.project_id = p.project_id
+JOIN departments d ON p.department_id = d.department_id
 WHERE e.salary = (
     SELECT MAX(e2.salary)
     FROM employees e2
